@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
-//dsfkljkasnm
 @Entity
 public class Vote {
     @Id
