@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.util.Base64;
-import java.util.UUID;
 
 @Service
 public class AuditService {
