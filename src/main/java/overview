@@ -1,0 +1,63 @@
+# Project Overview
+
+This application is a Spring Boot-based online voting system. It allows users (voters) to participate in elections, cast votes, and view results. It uses modern backend technologies for scalability, security, and reliability.
+
+---
+
+## Key Features & Flow
+
+1. **Voter Registration & Management**
+   - Voters can register and are managed via the `Voter` entity, `VoterRepository`, and `VoterService`.
+   - The `VoterController` exposes REST endpoints for registration and voter-related actions.
+
+2. **Election Management**
+   - Elections are represented by the `Election` entity and managed via `ElectionRepository`.
+   - Admins can create and manage elections.
+
+3. **Voting Process**
+   - Voters cast votes, which are represented by the `Vote` entity.
+   - Votes are sent to RabbitMQ (a message broker) using `VoteQueueProducer`.
+   - `VoteQueueListener` listens for incoming votes and processes them asynchronously, improving scalability and reliability.
+
+4. **Results & Auditing**
+   - Results are calculated and exposed via the `ResultsController`.
+   - All actions (like voting) are logged using the `AuditLog` entity and managed by `AuditService` and `AuditLogRepository` for traceability.
+
+5. **Caching**
+   - Redis is used for caching frequently accessed data (e.g., results, voter info) via `CacheService`, improving performance.
+
+6. **Database**
+   - H2 in-memory database is used for development/testing, storing voters, votes, elections, and audit logs.
+
+7. **Security**
+   - `SecurityConfig` secures endpoints, ensuring only authorized users can perform certain actions.
+
+8. **Configuration**
+   - `application.properties` configures RabbitMQ, Redis, H2, and other settings.
+   - `RabbitMQConfig` sets up queues and exchanges for messaging.
+
+---
+
+## Technologies Used
+
+- **Spring Boot**: Main framework for building the application.
+- **RabbitMQ**: Handles asynchronous vote processing.
+- **Redis**: Provides caching for fast data access.
+- **H2 Database**: Stores all persistent data during development.
+- **Spring Data JPA**: Simplifies database operations.
+- **Spring Security**: Secures the application.
+
+---
+
+## How It Works (Typical Flow)
+
+1. A voter registers via the API.
+2. The voter casts a vote; the vote is sent to RabbitMQ.
+3. The listener receives the vote, processes it, and stores it in the database.
+4. Audit logs are created for each action.
+5. Results are calculated and cached for quick access.
+6. Admins and users can view results and audit logs via REST endpoints.
+
+---
+
+If you want a diagram, API endpoint list, or details about a specific feature, let me know!
