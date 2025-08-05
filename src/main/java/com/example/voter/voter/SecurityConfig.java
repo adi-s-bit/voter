@@ -21,8 +21,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+            .headers(headers -> headers.frameOptions().disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/vote/register", "/api/vote/login").permitAll()
+                .requestMatchers("/h2-console/**", "/api/vote/register", "/api/vote/login").permitAll()
                 .anyRequest().authenticated()
             );
         return http.build();
