@@ -60,4 +60,43 @@ This application is a Spring Boot-based online voting system. It allows users (v
 
 ---
 
-If you want a diagram, API endpoint list, or details about a specific feature, let me know!
+Description of Each Class in Your Project
+Here’s a brief description of the main classes found in your com.example.voter.voter package:
+
+AuditLog: Likely represents a log entry for auditing actions (e.g., votes cast, changes made).
+
+AuditLogRepository: Spring Data repository for managing AuditLog entities in the database.
+
+AuditService: Service layer for handling audit-related logic (e.g., saving logs).
+
+CacheService: Manages caching, probably using Redis as configured in your application.properties.
+
+Election: Represents an election entity (e.g., election name, candidates).
+
+ElectionRepository: Spring Data repository for Election entities.
+
+RabbitMQConfig: Configuration class for setting up RabbitMQ queues, exchanges, and bindings.
+
+ResultsController: REST controller for exposing endpoints related to election results.
+
+SecurityConfig: Configures security (authentication, authorization) for your application.
+
+Vote: Represents a vote entity (e.g., voter, candidate, timestamp).
+
+VoteQueueListener: Listens for incoming vote messages from RabbitMQ.
+
+VoteQueueProducer: Sends vote messages to RabbitMQ.
+
+Voter: Represents a voter entity (e.g., name, ID).
+
+VoterApplication: The main entry point for your Spring Boot application (the file you provided).
+
+VoterController: REST controller for voter-related endpoints (e.g., register, vote).
+
+VoteRepository: Spring Data repository for Vote entities.
+
+VoterRepository: Spring Data repository for Voter entities.
+
+VoterService: Service layer for voter-related business logic.
+
+VoteService: Service layer for vote-related business logic.
